@@ -1,0 +1,43 @@
+<style>
+body, td, th { font-family: sans-serif;}
+table, td, th { border: solid 1px #ccc; border-collapse: collapse; }
+td, th { padding: 1em; }
+.article { display: inline-block; width: 5em; text-align: right; }
+.example { font-size: 24px; letter-spacing: 0.05em; }
+.base { color: #ccc; }
+.conn { color: #bbb; }
+.ending { font-weight: 700; border-radius: 0.25em; padding: 0.1em; margin-left: -0.1em;}
+.ending-s { color: #594; background: #DFD; }
+.ending-r { color: #46B; background: #DDF; }
+.ending-m { color: #944; background: #FDD; }
+.ending-n { color: #4AA; background: #DFF; }
+.extra { color: #4AA; }
+th { color: #999; font-weight: normal; text-transform: uppercase;}
+</style>
+
+<table>
+  <tr>
+    <th></th>
+    <% Table::TABLE.first[1].keys.each do |genus| %>
+      <th><%= genus %></th>
+    <% end %>
+  </tr>
+  <% Table::TABLE.each do |fall, fall_data| %>
+    <tr>
+      <th><%= fall %></th>
+      <% fall_data.each do |genus, fall_genus_data| %>
+        <td>
+
+          <% fall_genus_data.each do |artikel, adjektiv, extra| %>
+            <p class="example">
+              <span class="article"><%= format_article artikel %></span>
+              <span class="adjective"><%= format_adjective adjektiv %></span>
+              <span class="extra"><%= format_extra extra %></span>
+            </p>
+          <% end %>
+
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
